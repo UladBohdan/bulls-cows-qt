@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->userGuessWidget->hide();
     ui->computerQuessWidget->hide();
-    LISTOUT(tr("Hi!"));
+    LISTOUT(tr("Welcome!"));
     LISTOUT(tr("Go to \"Game\" to start a new game."));
     LISTOUT(tr("Good luck!"));
     status = new QLabel(tr("Start a new game"));
@@ -95,24 +95,6 @@ void MainWindow::nextStep()
             break;
         }
     }
-/*
-    if (temp[0].toLatin1()=='a')
-    {
-        // Computer knows exact answer!
-        LISTOUT(tr("Oh, I know exact answer! It's ")+temp.right(game.getLength()));
-        ui->mainLabel->setText(temp.right(game.getLength()));
-        ui->solutCountLabel->setText(tr("The only answer is suitable!"));
-        ui->submitButton->setEnabled(false);
-    }
-    else if (temp[0].toLatin1()=='b')
-    {
-        // Computer found out there is no solutions for this set
-
-    }
-    else
-    { */
-
-
 }
 
 void MainWindow::on_actionExit_triggered()
