@@ -7,46 +7,42 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>333</height>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Game rules</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>621</width>
-     <height>271</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;p&gt;The numerical version of the game is usually played with 4 digits, but can also be played with 3 or any other number of digits.&lt;/p&gt;
-&lt;p&gt;On a sheet of paper, the players each write a 4-digit secret number. The digits must be all different. Then, in turn, the players try to guess their opponent's number who gives the number of matches. If the matching digits are in their right positions, they are &amp;quot;bulls&amp;quot;, if in different positions, they are &amp;quot;cows&amp;quot;. Example:&lt;/p&gt;
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>&lt;p&gt;&lt;b&gt;On paper&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;The numerical version of the game is usually played with 4 digits, but can also be played with 3 or any other number of digits.&lt;/p&gt;
+&lt;p&gt;On a sheet of paper, the players each write a 4-digit secret number. &lt;b&gt;The digits must be all different.&lt;/b&gt; Then, in turn, the players try to guess their opponent's number who gives the number of matches. If the matching digits are in their right positions, they are &amp;quot;bulls&amp;quot;, if in different positions, they are &amp;quot;cows&amp;quot;. Example:&lt;/p&gt;
 &lt;ul&gt;&lt;li&gt;Secret number: 4271&lt;/li&gt;
 &lt;li&gt;Opponent's try: 1234&lt;/li&gt;
 &lt;li&gt;Answer: 1 bull and 2 cows. (The bull is &amp;quot;2&amp;quot;, the cows are &amp;quot;4&amp;quot; and &amp;quot;1&amp;quot;.)&lt;/li&gt;&lt;/ul&gt;
-&lt;p&gt;The first one to reveal the other's secret number wins the game. As the first player has a logical advantage, the game can be balanced over multiple games by alternating the right to go first, or over a single game by granting the second player an equal number of guesses, possibly resulting in a tie.&lt;/p&gt;</string>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="gotItButton">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>290</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Got it!</string>
-   </property>
-  </widget>
+&lt;p&gt;The first one to reveal the other's secret number wins the game. As the first player has a logical advantage, the game can be balanced over multiple games by alternating the right to go first, or over a single game by granting the second player an equal number of guesses, possibly resulting in a tie.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;On computer&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;This application proposes you two modes: you're guessing or computer's guessing. The first mode allows you to make a try in guessing secret number with length from &lt;b&gt;2&lt;/b&gt; to &lt;b&gt;7&lt;/b&gt;. The second mode is more for demonstrating computer's possibilities in guessing secret numbers.&lt;/p&gt;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="gotItButton">
+     <property name="text">
+      <string>Got it!</string>
+     </property>
+     <property name="shortcut">
+      <string>Return</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

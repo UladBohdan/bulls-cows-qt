@@ -13,17 +13,17 @@ void Engine::init(int _len)
         finalInt=finalInt*10+i;
     if (len==10)
         finalInt*=10;
-    currString="begin";
+    currString=GAME_START;
 
     q.clear();
     QString str;
-    str+="10";
+    str="10";
     for (int i=0; i<len-2; i++)
         str+=('2'+i);
     q.push_back(str);
     do
         q.push_back(getNextString(q.back()));
-    while (q.back()!="-");
+    while (q.back()!=LAST_STRING);
 }
 
 int Engine::getLength()
@@ -46,18 +46,18 @@ int Engine::solutionSize()
 
 QString Engine::getNextValue()
 {
-    if (currString!="begin")
+    if (currString!=GAME_START)
     {
-        while (q.front()!="-")
+        while (q.front()!=LAST_STRING)
         {
             if ( check(q.front(),currString,bulls,cows) )
                 q.push_back(q.front());
             q.pop_front();
         }
         q.pop_front();
-        q.push_back("-");
+        q.push_back(LAST_STRING);
     }
-    if (q.front()=="-")
+    if (q.front()==LAST_STRING)
         throw COMPG_NO_SOLUTIONS;
     qsrand(QTime::currentTime().msec());
     currString=q[qrand()%(q.size()-1)];
@@ -88,13 +88,12 @@ bool Engine::check(QString a, QString b, int _bulls, int _cows)
 
 QString Engine::getNextString(QString str)
 {
-    // Returns "-" if it's impossible to get the next value
     int temp=str.toInt()+1;
     while (true)
     {
         bool fine=true;
         if (temp==finalInt)
-            return "-";
+            return LAST_STRING;
         int x=temp, arr[10]={};
         while (x!=0)
         {
@@ -107,6 +106,7 @@ QString Engine::getNextString(QString str)
                 temp++;
                 i=10;
                 fine=false;
+                break;
             }
         if (fine)
             return QString::number(temp);

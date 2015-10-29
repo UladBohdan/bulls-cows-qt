@@ -26,7 +26,7 @@ void NewGame::on_okButton_clicked()
 {
     bool ok=true;
     value=ui->setLenEdit->text().toInt(&ok);
-    if (!ok || value<1 || value>7)
+    if (!ok || value<2 || value>7)
     {
         QMessageBox::warning(this,tr("Mistake!"),tr("Something went wrong! Check the value."));
         ui->setLenEdit->clear();

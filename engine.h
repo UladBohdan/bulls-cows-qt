@@ -14,6 +14,9 @@
 #define COMPG_NO_SOLUTIONS 40
 #define COMPG_WRONG_BC_VALUES 41
 
+#define GAME_START "a"
+#define LAST_STRING "b"
+
 class Engine : public QObject
 {
 public:

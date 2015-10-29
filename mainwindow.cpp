@@ -7,11 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->userGuessWidget->hide();
-    ui->computerQuessWidget->hide();
+    ui->computerGuessWidget->hide();
     LISTOUT(tr("Welcome!"));
     LISTOUT(tr("Go to \"Game\" to start a new game."));
     LISTOUT(tr("Good luck!"));
-    status = new QLabel(tr("Start a new game"));
+    status = new QLabel(tr("Go to \"Game\"."));
     ui->statusBar->addWidget(status);
 }
 
@@ -28,7 +28,7 @@ void MainWindow::on_submitButton_clicked()
         game.setBullsCows(ui->bullsNum->text().toInt(&ok), ui->cowsNum->text().toInt(&ok));
         if (!ok)
             throw COMPG_WRONG_BC_VALUES;
-        LISTOUT(ui->mainLabel->text()+tr("  You said there're ")+ui->bullsNum->text()+tr(" bulls and ")+
+        LISTOUT(ui->mainLabel->text()+"  :  "+ui->bullsNum->text()+tr(" bulls, ")+
                 ui->cowsNum->text()+tr(" cows."));
         ui->bullsNum->clear();
         ui->cowsNum->clear();
@@ -37,9 +37,14 @@ void MainWindow::on_submitButton_clicked()
     }
     catch (int e)
     {
-        if (e==COMPG_WRONG_BC_VALUES)
+        switch (e)
+        {
+        case COMPG_WRONG_BC_VALUES:
             LISTOUT(tr("Impossible number of bulls and cows. Try again."));
+            break;
+        }
     }
+    ui->historyList->scrollToBottom();
 }
 
 void MainWindow::on_actionComputerGuesses_triggered()
@@ -51,7 +56,7 @@ void MainWindow::on_actionComputerGuesses_triggered()
         NewGame dlg(this,tr("Length for Computer-Guessing mode"));
         if (dlg.exec()==QDialog::Accepted)
         {
-            ui->computerQuessWidget->show();
+            ui->computerGuessWidget->show();
             ui->userGuessWidget->hide();
             status->setText(tr("Mode: Computer is guessing your number."));
             ui->historyList->clear();
@@ -72,9 +77,9 @@ void MainWindow::nextStep()
         QString temp=game.getNextValue();
         if (game.solutionSize()==1)
         {
-            LISTOUT(tr("Oh, I know exact answer! It's ")+temp.right(game.getLength()));
+            LISTOUT(tr("Oh, I know the answer! It's ")+temp.right(game.getLength()));
             ui->mainLabel->setText(temp.right(game.getLength()));
-            ui->solutCountLabel->setText(tr("The only answer is suitable!"));
+            ui->solutCountLabel->setText(tr("The only suitable answer!"));
             ui->submitButton->setEnabled(false);
         }
         else
@@ -88,13 +93,14 @@ void MainWindow::nextStep()
         switch (e)
         {
         case COMPG_NO_SOLUTIONS:
-            LISTOUT(tr("Something went wrong:( There'is no suitable solutions."));
+            LISTOUT(tr("Something went wrong:( There're no suitable solutions."));
             ui->mainLabel->setText(tr("Mistake"));
             ui->solutCountLabel->setText(tr("No suitable solutions"));
             ui->submitButton->setEnabled(false);
             break;
         }
     }
+    ui->historyList->scrollToBottom();
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -133,14 +139,15 @@ void MainWindow::on_actionUserGuessing_triggered()
         NewGame dlg(this,tr("Length for User-Guessing mode"));
         if (dlg.exec()==QDialog::Accepted)
         {
-            ui->computerQuessWidget->hide();
+            ui->computerGuessWidget->hide();
             ui->userGuessWidget->show();
-            status->setText("Mode: You are quessing a number");
+            status->setText("Mode: You are guessing a number");
             ui->historyList->clear();
             ui->userGuessString->clear();
             game.guessNumber(dlg.value);
             ui->userGuessString->setFocus();
             LISTOUT(tr("Make a guess what the number is!\nLength is ")+QString::number(game.getLength()));
+            ui->historyList->scrollToBottom();
         }
     }
 }
@@ -157,7 +164,7 @@ void MainWindow::on_processUserGuessButton_clicked()
             LISTOUT(tr("Just for fun:)"));
         }
         else
-            LISTOUT(ui->userGuessString->text()+"  : "+QString::number(temp.first)+tr(" bulls and ")+
+            LISTOUT(ui->userGuessString->text()+"  :  "+QString::number(temp.first)+tr(" bulls, ")+
                                                        QString::number(temp.second)+tr(" cows."));
     }
     catch (int e)
@@ -177,4 +184,5 @@ void MainWindow::on_processUserGuessButton_clicked()
     }
     ui->userGuessString->clear();
     ui->userGuessString->setFocus();
+    ui->historyList->scrollToBottom();
 }

@@ -26,7 +26,7 @@
     <item>
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>A number between 1 and 7 including</string>
+       <string>A number between 2 and 7 including</string>
       </property>
      </widget>
     </item>
@@ -51,12 +51,18 @@
         <property name="text">
          <string>OK</string>
         </property>
+        <property name="shortcut">
+         <string>Return</string>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="cancelButton">
         <property name="text">
          <string>Cancel</string>
+        </property>
+        <property name="shortcut">
+         <string>Esc</string>
         </property>
        </widget>
       </item>
