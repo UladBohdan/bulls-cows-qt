@@ -1,6 +1,6 @@
-Application provides opportunity to play a popular game "Bulls and Cows".
+Realization of a popular number game "Bulls and Cows".
 
-Two modes allows you either guess the secret number guessed by your computer, or give computer an opportunity to guess your secret number.
+Application both allows you to unravel a number guessed by computer and shows how computer will manage with the same task.
 
 The rules of the paper version are below:
 
@@ -9,6 +9,7 @@ The rules of the paper version are below:
 >* Secret number: 4271
 >* Opponent's try: 1234
 >* Answer: 1 bull and 2 cows. (The bull is "2", the cows are "4" and "1".)
+
 >The first one to reveal the other's secret number wins the game. As the first player has a logical advantage, the game can be balanced over multiple games by alternating the right to go first, or over a single game by granting the second player an equal number of guesses, possibly resulting in a tie.
 
 More on [wikipedia](https://en.wikipedia.org/wiki/Bulls_and_Cows).
